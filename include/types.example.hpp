@@ -7,7 +7,10 @@ struct A {
   void add() { LOG_MACROS(A, add); };
 };
 
-struct B : protected A {
+// this version fails on gcc (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
+// error message: ‘A’ is not an accessible base of ‘B’
+// struct B : protected A {
+struct B : private A {
   void push() { LOG_MACROS(B, push); };
 };
 

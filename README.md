@@ -51,7 +51,7 @@ void add_universal(...) {
   LOG_MACROS(NULL, NULL);
 }
 ```
-`decltype(instance.add(), std::declval<void>())`，会尝试`instance.add()`，失败后进行下一次尝试，最后由优先级最低的`void add_universal(...)`匹配。
+返回值类型为`(decltype(instance.add(), std::declval<void>())`中的后半部分的void，但是编译过程中会尝试`instance.add()`，失败后进行下一次尝试，最后由优先级最低的`void add_universal(...)`匹配。
 
 ```cpp
 template <typename ReturnType, typename...A>
@@ -73,4 +73,5 @@ decltype(dd()) d = 0;
 + [placeholder type specifiers](https://en.cppreference.com/w/cpp/language/auto)
 + [decltype specifier](https://en.cppreference.com/w/cpp/language/decltype)
 + [Get decltype of function](https://stackoverflow.com/questions/32887979/get-decltype-of-function)
-
++ [Compiler standards support (c++11, c++14, c++17)](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2634.html)
++ [Solving the SFINAE problem for expressions](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2634.html)
