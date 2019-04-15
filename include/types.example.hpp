@@ -4,15 +4,15 @@
 #include "log.macros.hpp"
 
 struct A {
-  void Add() { LOG_MACROS(A, Add); };
+  void add() { LOG_MACROS(A, add); };
 };
 
-struct B : A {
-  void Push() { LOG_MACROS(B, Push); };
+struct B : protected A {
+  void push() { LOG_MACROS(B, push); };
 };
 
 struct C {
-  void Push() { LOG_MACROS(C, Push); };
+  void push() { LOG_MACROS(C, push); };
 };
 
 #endif  // __TYPES_EXAMPLE_HPP__
