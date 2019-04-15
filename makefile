@@ -7,7 +7,7 @@ BIN_DIR = $(ROOT_DIR)/bin
 TEST_DIR = $(ROOT_DIR)/test
 
 CC = g++
-FLAGS = -std=c++11 -o3 \
+FLAGS = -std=c++11 -O3 \
 	-I $(ROOT_DIR) \
 	-I $(INC_DIR) \
 	-I $(INC_DIR)/effective \
@@ -16,8 +16,16 @@ FLAGS = -std=c++11 -o3 \
 
 $(shell mkdir -p $(BIN_DIR) $(OBJ_DIR))
 
-$(BIN_DIR)/main.out : $(SRC_DIR)/main.cpp
+$(BIN_DIR)/main.out : $(SRC_DIR)/main.cpp $(OBJ_DIR)/version.o
 	$(CC) $(FLAGS) $^ -o $@
+
+$(OBJ_DIR)/version.o : $(OBJ_DIR)/version.1.s
+	$(CC) $(FLAGS) $^ -c -o $@
+	# objdump to assembler
+	objdump -S $(OBJ_DIR)/version.o > $(OBJ_DIR)/version.2.s
+
+$(OBJ_DIR)/version.1.s : $(SRC_DIR)/version.cpp
+	$(CC) $(FLAGS) $^ -S -o $@
 
 all: $(BIN_DIR)/main.out
 	# make all finished

@@ -10,3 +10,6 @@
 
 "Substitution Failure Is Not An Error"
 
+## Reference
++ [How do you get assembler output from C/C++ source in gcc?](https://stackoverflow.com/questions/137038/how-do-you-get-assembler-output-from-c-c-source-in-gcc)
+
